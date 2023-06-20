@@ -1,3 +1,8 @@
+# You can give the class an icon like so:
+@icon("res://class_icon.webp")
+# This must be at the very top of the script, before extends and class_name
+# This icon will show up in the editor
+
 extends Node
 
 # Each script is a class, but it's really awkward to reference them without registering them
