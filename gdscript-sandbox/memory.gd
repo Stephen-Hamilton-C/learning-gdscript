@@ -13,3 +13,6 @@ extends Node
 # The Node class extends from Object, so we have to manually free our nodes.
 # This is done using the `.queue_free()` method on Nodes,
 # which will free that Node and all its child Nodes.
+
+# If a Node is removed from a scene,
+# it will automatically queue itself and its children for memory release
