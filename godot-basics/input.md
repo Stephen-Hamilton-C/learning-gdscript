@@ -32,3 +32,56 @@ This is much less painful than how Unity handles ignoring inputs when interactin
 `_unhandled_key_input` is only called on keyboard inputs, no mouse inputs.
 
 CollisionObjects have access to `_input_event()` which is step 7 of the input event cycle
+
+## InputEvent
+InputEvents are the base class of all input data.
+Godot converts user inputs into a class that holds the relevant data.
+This is typically a subclass of InputEvent.
+
+Here's a list of InputEvent subclasses:
+- InputEventAction
+- InputEventFromWindow
+    - InputEventScreenDrag
+    - InputEventScreenTouch
+    - **InputEventWithModifiers**
+        - InputEventGesture
+            - InputEventMagnifyGesture
+            - InputEventPanGesture
+        - **InputEventKey**
+        - **InputEventMouse**
+            - InputEventMouseButton
+            - InputEventMouseMotion
+- InputEventJoypadButton
+- InputEventJoypadMotion
+- InputEventMIDI
+- InputEventShortcut
+
+### InputEventWithModifiers
+The most common InputEvents will be from *InputEventWithModifiers*.
+*InputEventKey* is for keyboard presses,
+and *InputEventMouse* is for mouse movement/buttons
+
+To get a key from an *InputEventKey*, we call `get_scancode()`, or use `scancode`.
+This returns an `int`, which corresponds to a scancode from the `KeyList` constants.
+
+Example: `KEY_A` is the number 65. This corresponds to the A key on the keyboard.
+
+Here's how we would handle the input in code:
+```gd
+func _input(event: InputEvent):
+    if event is InputEventKey:
+        if event.scancode == KEY_RIGHT:
+            print("Right arrow key pressed")
+```
+
+### InputEventJoypadButton & InputEventJoypadMotion
+JoypadButton handles button presses, while JoypadMotion handles thumbsticks.
+
+To get if a joypad button is pressed,
+we use `button_index` and compare it against a `JoyButton` enum.
+We can then check the `pressed` property to see if the button is pressed or not.
+For controllers with analog buttons (e.g. PS3 controller),
+we can use `pressure` to see how hard the player is pressing the button.
+
+To get a joypad axis, we check `axis` and compare it against a `JoyAxis` enum.
+We can then check the `axis_value` property.
