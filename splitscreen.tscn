@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://mjufd4vnbtsd"]
+
+[ext_resource type="Texture2D" uid="uid://cdxk28onecxsm" path="res://square.png" id="1_4aj4a"]
+[ext_resource type="Script" path="res://src/SplitscreenPlayer.gd" id="2_vuaoy"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player1" type="Sprite2D" parent="."]
+position = Vector2(143, 111)
+scale = Vector2(0.181641, 0.181641)
+texture = ExtResource("1_4aj4a")
+script = ExtResource("2_vuaoy")
+
+[node name="Player2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(145, 301)
+scale = Vector2(0.181641, 0.181641)
+texture = ExtResource("1_4aj4a")
+script = ExtResource("2_vuaoy")
+controller_index = 1
