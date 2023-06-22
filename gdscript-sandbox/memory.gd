@@ -4,7 +4,7 @@ extends Node
 # - Reference counting
 # - Manually
 
-# When a class extends from the Reference class, it uses reference counting.
+# When a class extends from the RefCounted class, it uses reference counting.
 # This class will automatically keep track of how many references to itself exist.
 # When this counter hits 0, the object will automatically be freed from memory.
 

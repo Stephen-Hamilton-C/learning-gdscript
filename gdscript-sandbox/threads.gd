@@ -5,7 +5,7 @@ extends Node
 # - Start the thread
 # - Exit the thread
 
-# Threads extend from Reference, so they are reference counted
+# Threads extend from RefCounted, so they are reference counted
 
 var thread = Thread.new()
 
