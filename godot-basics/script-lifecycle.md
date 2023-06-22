@@ -110,3 +110,24 @@ Good rule of thumb is start out with `_physics_process`.
 If it feels weird, use `_process`.
 If the game is too slow and the bottleneck is `_process`,
 then move the code to `_physics_process`.
+
+## Exit Tree
+```gd
+func _exit_tree():
+    pass
+```
+
+This is called when this Node is being removed from the Node tree.
+However, this doesn't necessarily mean the Node is being *destroyed*.
+Think of the Node as just going inactive.
+To actually remove the Node from memory, call `queue_free()` on it.
+
+`queue_free()` will also remove a Node from the Node tree.
+So if you are completely done with a Node,
+call `queue_free()` rather than just remove it from the tree.
+However, if you want a Node to never come back after being inactive,
+you can do this:
+```gd
+func _exit_tree():
+    self.queue_free()
+```
