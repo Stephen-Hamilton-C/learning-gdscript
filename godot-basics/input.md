@@ -85,3 +85,28 @@ we can use `pressure` to see how hard the player is pressing the button.
 
 To get a joypad axis, we check `axis` and compare it against a `JoyAxis` enum.
 We can then check the `axis_value` property.
+
+## Input Actions
+A more Unity-like and versatile way to handle input is with Actions.
+In Godot, go to Project -> Project Settings... -> Input Map tab.
+You can add Actions which will activate for a certain set of inputs.
+For example, you can have a "move_right" action
+which will activate when the player presses D, the right arrow, or moves a thumbstick.
+
+Use `Input.is_action_pressed(action_name)` to determine if an action is currently being activated.
+Use `Input.is_action_just_pressed(action_name)` to determine if this is the frame that the action was activated.
+To get the axis of an action, use `Input.get_action_strength(action_name)`.
+To convert a pair of 0 - 1 axes to -1 - 1, you can do this:
+```gd
+var horizontal = Input.get_action_strength("right") - Input.get_action_strength("left")
+```
+`horizontal` will then be -1 when `left` is 1, and 1 when `right` is 1.
+
+Also, a really helpful method is `Input.get_vector()`, which takes in four actions and a deadzone.
+`get_vector()` will automagically limit the vector to a magnitude of 1 and has a circular deadzone.
+Example:
+```gd
+func _physics_process(delta):
+    val movementVector = Input.get_vector("left", "right", "up", "down")
+    position += movementVector * delta
+```
