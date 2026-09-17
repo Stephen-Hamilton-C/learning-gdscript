@@ -1,3 +1,7 @@
+# Archived - 2026-09-17
+All repositories have been transferred to a personally-run repository.
+This remains up for legacy purposes.
+
 # learning-gdscript
 Simple Godot project to learn how GDScript works.
 All gd scripts have my own notes from tutorials and articles I'm looking at.
